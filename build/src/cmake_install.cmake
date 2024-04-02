@@ -1,4 +1,4 @@
-# Install script for directory: /home/codeCpp/RPC_Cpp/src
+# Install script for directory: /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

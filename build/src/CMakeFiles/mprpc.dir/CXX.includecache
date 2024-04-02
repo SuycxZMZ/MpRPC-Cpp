@@ -7,13 +7,29 @@
 #IncludeRegexTransform: 
 
 ../src/include/mprpcapplication.h
+mprpcconfig.h
+../src/include/mprpcconfig.h
 
-/home/codeCpp/RPC_Cpp/src/mprpcapplication.cc
+../src/include/mprpcconfig.h
+unordered_map
+-
+string
+-
+
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.cc
 mprpcapplication.h
-/home/codeCpp/RPC_Cpp/src/mprpcapplication.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.h
 iostream
 -
 unistd.h
+-
+string
+-
+
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcconfig.cc
+mprpcconfig.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcconfig.h
+iostream
 -
 string
 -

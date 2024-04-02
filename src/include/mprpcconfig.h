@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <string>
 
+void removeSpaces(std::string& str);
+
 class MprpcConfig
 {
 public:

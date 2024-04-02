@@ -47,26 +47,34 @@ google/protobuf/port_undef.inc
 -
 
 ../src/include/mprpcapplication.h
+mprpcconfig.h
+../src/include/mprpcconfig.h
+
+../src/include/mprpcconfig.h
+unordered_map
+-
+string
+-
 
 ../src/include/rpcprovider.h
 google/protobuf/service.h
 ../src/include/google/protobuf/service.h
 
-/home/codeCpp/RPC_Cpp/example/callee/userservice.cc
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/userservice.cc
 iostream
 -
 string
 -
 user.pb.h
-/home/codeCpp/RPC_Cpp/example/callee/user.pb.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/user.pb.h
 mprpcapplication.h
-/home/codeCpp/RPC_Cpp/example/callee/mprpcapplication.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/mprpcapplication.h
 rpcprovider.h
-/home/codeCpp/RPC_Cpp/example/callee/rpcprovider.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/rpcprovider.h
 
-/home/codeCpp/RPC_Cpp/example/user.pb.cc
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/user.pb.cc
 user.pb.h
-/home/codeCpp/RPC_Cpp/example/user.pb.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/user.pb.h
 algorithm
 -
 google/protobuf/io/coded_stream.h
@@ -88,7 +96,7 @@ google/protobuf/port_def.inc
 google/protobuf/port_undef.inc
 -
 
-/home/codeCpp/RPC_Cpp/example/user.pb.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/user.pb.h
 limits
 -
 string

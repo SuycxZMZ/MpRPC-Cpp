@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/codeCpp/RPC_Cpp
+CMAKE_SOURCE_DIR = /home/codeCpp/RPC_Cpp/MpRPC-Cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/codeCpp/RPC_Cpp/build
+CMAKE_BINARY_DIR = /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build
 
 # Include any dependencies generated for this target.
 include example/callee/CMakeFiles/provider.dir/depend.make
@@ -59,29 +59,29 @@ include example/callee/CMakeFiles/provider.dir/flags.make
 
 example/callee/CMakeFiles/provider.dir/userservice.cc.o: example/callee/CMakeFiles/provider.dir/flags.make
 example/callee/CMakeFiles/provider.dir/userservice.cc.o: ../example/callee/userservice.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object example/callee/CMakeFiles/provider.dir/userservice.cc.o"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/provider.dir/userservice.cc.o -c /home/codeCpp/RPC_Cpp/example/callee/userservice.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object example/callee/CMakeFiles/provider.dir/userservice.cc.o"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/provider.dir/userservice.cc.o -c /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/userservice.cc
 
 example/callee/CMakeFiles/provider.dir/userservice.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/provider.dir/userservice.cc.i"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/example/callee/userservice.cc > CMakeFiles/provider.dir/userservice.cc.i
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/userservice.cc > CMakeFiles/provider.dir/userservice.cc.i
 
 example/callee/CMakeFiles/provider.dir/userservice.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/provider.dir/userservice.cc.s"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/example/callee/userservice.cc -o CMakeFiles/provider.dir/userservice.cc.s
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee/userservice.cc -o CMakeFiles/provider.dir/userservice.cc.s
 
 example/callee/CMakeFiles/provider.dir/__/user.pb.cc.o: example/callee/CMakeFiles/provider.dir/flags.make
 example/callee/CMakeFiles/provider.dir/__/user.pb.cc.o: ../example/user.pb.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object example/callee/CMakeFiles/provider.dir/__/user.pb.cc.o"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/provider.dir/__/user.pb.cc.o -c /home/codeCpp/RPC_Cpp/example/user.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object example/callee/CMakeFiles/provider.dir/__/user.pb.cc.o"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/provider.dir/__/user.pb.cc.o -c /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/user.pb.cc
 
 example/callee/CMakeFiles/provider.dir/__/user.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/provider.dir/__/user.pb.cc.i"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/example/user.pb.cc > CMakeFiles/provider.dir/__/user.pb.cc.i
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/user.pb.cc > CMakeFiles/provider.dir/__/user.pb.cc.i
 
 example/callee/CMakeFiles/provider.dir/__/user.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/provider.dir/__/user.pb.cc.s"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/example/user.pb.cc -o CMakeFiles/provider.dir/__/user.pb.cc.s
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/user.pb.cc -o CMakeFiles/provider.dir/__/user.pb.cc.s
 
 # Object files for target provider
 provider_OBJECTS = \
@@ -96,8 +96,8 @@ provider_EXTERNAL_OBJECTS =
 ../bin/provider: example/callee/CMakeFiles/provider.dir/build.make
 ../bin/provider: ../lib/libmprpc.so
 ../bin/provider: example/callee/CMakeFiles/provider.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/codeCpp/RPC_Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../../../bin/provider"
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/provider.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../../../bin/provider"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/provider.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 example/callee/CMakeFiles/provider.dir/build: ../bin/provider
@@ -105,10 +105,10 @@ example/callee/CMakeFiles/provider.dir/build: ../bin/provider
 .PHONY : example/callee/CMakeFiles/provider.dir/build
 
 example/callee/CMakeFiles/provider.dir/clean:
-	cd /home/codeCpp/RPC_Cpp/build/example/callee && $(CMAKE_COMMAND) -P CMakeFiles/provider.dir/cmake_clean.cmake
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee && $(CMAKE_COMMAND) -P CMakeFiles/provider.dir/cmake_clean.cmake
 .PHONY : example/callee/CMakeFiles/provider.dir/clean
 
 example/callee/CMakeFiles/provider.dir/depend:
-	cd /home/codeCpp/RPC_Cpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/codeCpp/RPC_Cpp /home/codeCpp/RPC_Cpp/example/callee /home/codeCpp/RPC_Cpp/build /home/codeCpp/RPC_Cpp/build/example/callee /home/codeCpp/RPC_Cpp/build/example/callee/CMakeFiles/provider.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/codeCpp/RPC_Cpp/MpRPC-Cpp /home/codeCpp/RPC_Cpp/MpRPC-Cpp/example/callee /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/example/callee/CMakeFiles/provider.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : example/callee/CMakeFiles/provider.dir/depend
 

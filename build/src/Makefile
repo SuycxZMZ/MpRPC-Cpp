@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/codeCpp/RPC_Cpp
+CMAKE_SOURCE_DIR = /home/codeCpp/RPC_Cpp/MpRPC-Cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/codeCpp/RPC_Cpp/build
+CMAKE_BINARY_DIR = /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/codeCpp/RPC_Cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/codeCpp/RPC_Cpp/build/CMakeFiles /home/codeCpp/RPC_Cpp/build/src/CMakeFiles/progress.marks
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/codeCpp/RPC_Cpp/build/CMakeFiles 0
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src/CMakeFiles/progress.marks
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/codeCpp/RPC_Cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/mprpc.dir/rule:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/mprpc.dir/rule
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/mprpc.dir/rule
 .PHONY : src/CMakeFiles/mprpc.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ mprpc: src/CMakeFiles/mprpc.dir/rule
 
 # fast build rule for target.
 mprpc/fast:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/build
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/build
 .PHONY : mprpc/fast
 
 mprpcapplication.o: mprpcapplication.cc.o
@@ -131,7 +131,7 @@ mprpcapplication.o: mprpcapplication.cc.o
 
 # target to build an object file
 mprpcapplication.cc.o:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o
 .PHONY : mprpcapplication.cc.o
 
 mprpcapplication.i: mprpcapplication.cc.i
@@ -140,7 +140,7 @@ mprpcapplication.i: mprpcapplication.cc.i
 
 # target to preprocess a source file
 mprpcapplication.cc.i:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcapplication.cc.i
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcapplication.cc.i
 .PHONY : mprpcapplication.cc.i
 
 mprpcapplication.s: mprpcapplication.cc.s
@@ -149,8 +149,35 @@ mprpcapplication.s: mprpcapplication.cc.s
 
 # target to generate assembly for a file
 mprpcapplication.cc.s:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcapplication.cc.s
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcapplication.cc.s
 .PHONY : mprpcapplication.cc.s
+
+mprpcconfig.o: mprpcconfig.cc.o
+
+.PHONY : mprpcconfig.o
+
+# target to build an object file
+mprpcconfig.cc.o:
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o
+.PHONY : mprpcconfig.cc.o
+
+mprpcconfig.i: mprpcconfig.cc.i
+
+.PHONY : mprpcconfig.i
+
+# target to preprocess a source file
+mprpcconfig.cc.i:
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcconfig.cc.i
+.PHONY : mprpcconfig.cc.i
+
+mprpcconfig.s: mprpcconfig.cc.s
+
+.PHONY : mprpcconfig.s
+
+# target to generate assembly for a file
+mprpcconfig.cc.s:
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/mprpcconfig.cc.s
+.PHONY : mprpcconfig.cc.s
 
 rpcprovider.o: rpcprovider.cc.o
 
@@ -158,7 +185,7 @@ rpcprovider.o: rpcprovider.cc.o
 
 # target to build an object file
 rpcprovider.cc.o:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/rpcprovider.cc.o
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/rpcprovider.cc.o
 .PHONY : rpcprovider.cc.o
 
 rpcprovider.i: rpcprovider.cc.i
@@ -167,7 +194,7 @@ rpcprovider.i: rpcprovider.cc.i
 
 # target to preprocess a source file
 rpcprovider.cc.i:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/rpcprovider.cc.i
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/rpcprovider.cc.i
 .PHONY : rpcprovider.cc.i
 
 rpcprovider.s: rpcprovider.cc.s
@@ -176,7 +203,7 @@ rpcprovider.s: rpcprovider.cc.s
 
 # target to generate assembly for a file
 rpcprovider.cc.s:
-	cd /home/codeCpp/RPC_Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/rpcprovider.cc.s
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(MAKE) -f src/CMakeFiles/mprpc.dir/build.make src/CMakeFiles/mprpc.dir/rpcprovider.cc.s
 .PHONY : rpcprovider.cc.s
 
 # Help Target
@@ -191,6 +218,9 @@ help:
 	@echo "... mprpcapplication.o"
 	@echo "... mprpcapplication.i"
 	@echo "... mprpcapplication.s"
+	@echo "... mprpcconfig.o"
+	@echo "... mprpcconfig.i"
+	@echo "... mprpcconfig.s"
 	@echo "... rpcprovider.o"
 	@echo "... rpcprovider.i"
 	@echo "... rpcprovider.s"
@@ -205,6 +235,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/codeCpp/RPC_Cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

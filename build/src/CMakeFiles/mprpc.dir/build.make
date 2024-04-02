@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/codeCpp/RPC_Cpp
+CMAKE_SOURCE_DIR = /home/codeCpp/RPC_Cpp/MpRPC-Cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/codeCpp/RPC_Cpp/build
+CMAKE_BINARY_DIR = /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/mprpc.dir/depend.make
@@ -59,44 +59,59 @@ include src/CMakeFiles/mprpc.dir/flags.make
 
 src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o: src/CMakeFiles/mprpc.dir/flags.make
 src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o: ../src/mprpcapplication.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
-	cd /home/codeCpp/RPC_Cpp/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mprpc.dir/mprpcapplication.cc.o -c /home/codeCpp/RPC_Cpp/src/mprpcapplication.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mprpc.dir/mprpcapplication.cc.o -c /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.cc
 
 src/CMakeFiles/mprpc.dir/mprpcapplication.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mprpc.dir/mprpcapplication.cc.i"
-	cd /home/codeCpp/RPC_Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/src/mprpcapplication.cc > CMakeFiles/mprpc.dir/mprpcapplication.cc.i
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.cc > CMakeFiles/mprpc.dir/mprpcapplication.cc.i
 
 src/CMakeFiles/mprpc.dir/mprpcapplication.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mprpc.dir/mprpcapplication.cc.s"
-	cd /home/codeCpp/RPC_Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/src/mprpcapplication.cc -o CMakeFiles/mprpc.dir/mprpcapplication.cc.s
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.cc -o CMakeFiles/mprpc.dir/mprpcapplication.cc.s
+
+src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o: src/CMakeFiles/mprpc.dir/flags.make
+src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o: ../src/mprpcconfig.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mprpc.dir/mprpcconfig.cc.o -c /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcconfig.cc
+
+src/CMakeFiles/mprpc.dir/mprpcconfig.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mprpc.dir/mprpcconfig.cc.i"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcconfig.cc > CMakeFiles/mprpc.dir/mprpcconfig.cc.i
+
+src/CMakeFiles/mprpc.dir/mprpcconfig.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mprpc.dir/mprpcconfig.cc.s"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcconfig.cc -o CMakeFiles/mprpc.dir/mprpcconfig.cc.s
 
 src/CMakeFiles/mprpc.dir/rpcprovider.cc.o: src/CMakeFiles/mprpc.dir/flags.make
 src/CMakeFiles/mprpc.dir/rpcprovider.cc.o: ../src/rpcprovider.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/mprpc.dir/rpcprovider.cc.o"
-	cd /home/codeCpp/RPC_Cpp/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mprpc.dir/rpcprovider.cc.o -c /home/codeCpp/RPC_Cpp/src/rpcprovider.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/mprpc.dir/rpcprovider.cc.o"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mprpc.dir/rpcprovider.cc.o -c /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/rpcprovider.cc
 
 src/CMakeFiles/mprpc.dir/rpcprovider.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mprpc.dir/rpcprovider.cc.i"
-	cd /home/codeCpp/RPC_Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/src/rpcprovider.cc > CMakeFiles/mprpc.dir/rpcprovider.cc.i
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/rpcprovider.cc > CMakeFiles/mprpc.dir/rpcprovider.cc.i
 
 src/CMakeFiles/mprpc.dir/rpcprovider.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mprpc.dir/rpcprovider.cc.s"
-	cd /home/codeCpp/RPC_Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/src/rpcprovider.cc -o CMakeFiles/mprpc.dir/rpcprovider.cc.s
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/rpcprovider.cc -o CMakeFiles/mprpc.dir/rpcprovider.cc.s
 
 # Object files for target mprpc
 mprpc_OBJECTS = \
 "CMakeFiles/mprpc.dir/mprpcapplication.cc.o" \
+"CMakeFiles/mprpc.dir/mprpcconfig.cc.o" \
 "CMakeFiles/mprpc.dir/rpcprovider.cc.o"
 
 # External object files for target mprpc
 mprpc_EXTERNAL_OBJECTS =
 
 ../lib/libmprpc.so: src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o
+../lib/libmprpc.so: src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o
 ../lib/libmprpc.so: src/CMakeFiles/mprpc.dir/rpcprovider.cc.o
 ../lib/libmprpc.so: src/CMakeFiles/mprpc.dir/build.make
 ../lib/libmprpc.so: src/CMakeFiles/mprpc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/codeCpp/RPC_Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library ../../lib/libmprpc.so"
-	cd /home/codeCpp/RPC_Cpp/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mprpc.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library ../../lib/libmprpc.so"
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mprpc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/mprpc.dir/build: ../lib/libmprpc.so
@@ -104,10 +119,10 @@ src/CMakeFiles/mprpc.dir/build: ../lib/libmprpc.so
 .PHONY : src/CMakeFiles/mprpc.dir/build
 
 src/CMakeFiles/mprpc.dir/clean:
-	cd /home/codeCpp/RPC_Cpp/build/src && $(CMAKE_COMMAND) -P CMakeFiles/mprpc.dir/cmake_clean.cmake
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src && $(CMAKE_COMMAND) -P CMakeFiles/mprpc.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/mprpc.dir/clean
 
 src/CMakeFiles/mprpc.dir/depend:
-	cd /home/codeCpp/RPC_Cpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/codeCpp/RPC_Cpp /home/codeCpp/RPC_Cpp/src /home/codeCpp/RPC_Cpp/build /home/codeCpp/RPC_Cpp/build/src /home/codeCpp/RPC_Cpp/build/src/CMakeFiles/mprpc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/codeCpp/RPC_Cpp/MpRPC-Cpp /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src /home/codeCpp/RPC_Cpp/MpRPC-Cpp/build/src/CMakeFiles/mprpc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/mprpc.dir/depend
 
