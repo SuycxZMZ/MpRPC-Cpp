@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.0)
+project(mprpc)
+
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGES} -g)
+
+# 配置可执行文件输出路径
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+# 设置项目库文件输出路径
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+# 头文件搜索路径 -I
+# include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/src/include)
+include_directories(${PROJECT_SOURCE_DIR}/example)
+# -I/usr/local/include/google/protobuf  -L/usr/local/lib
+include_directories(/usr/local/include/google/protobuf)
+
+# 设置项目库文件搜索路径 -L
+link_directories(${PROJECT_SOURCE_DIR}/lib)
+link_directories(/usr/local/lib)
+
+# 加载子目录
+add_subdirectory(src)
+add_subdirectory(example)

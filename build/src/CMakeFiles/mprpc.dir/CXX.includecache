@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/include/mprpcapplication.h
+
+/home/codeCpp/RPC_Cpp/src/mprpcapplication.cc
+mprpcapplication.h
+/home/codeCpp/RPC_Cpp/src/mprpcapplication.h
+iostream
+-
+unistd.h
+-
+string
+-
+
