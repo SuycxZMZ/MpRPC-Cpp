@@ -16,6 +16,18 @@ unordered_map
 string
 -
 
+../src/include/rpcprovider.h
+google/protobuf/service.h
+../src/include/google/protobuf/service.h
+muduo/net/TcpServer.h
+-
+muduo/net/EventLoop.h
+-
+muduo/net/InetAddress.h
+-
+muduo/net/TcpConnection.h
+-
+
 /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.cc
 mprpcapplication.h
 /home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.h
@@ -32,5 +44,15 @@ mprpcconfig.h
 iostream
 -
 string
+-
+
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/rpcprovider.cc
+rpcprovider.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/rpcprovider.h
+string
+-
+mprpcapplication.h
+/home/codeCpp/RPC_Cpp/MpRPC-Cpp/src/mprpcapplication.h
+functional
 -
 
