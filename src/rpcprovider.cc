@@ -1,12 +1,25 @@
 #include "rpcprovider.h"
-#include <string>
 #include "mprpcapplication.h"
-#include <functional>
-
 
 void RpcProvider::NotifyService(google::protobuf::Service * service)
 {
+    ServiceInfo service_info;
 
+    const google::protobuf::ServiceDescriptor * serviceDesc = service->GetDescriptor();
+    // 获取服务名字
+    const std::string serviceName = serviceDesc->name();
+    // 获取服务方法的数量
+    int methodCnt = serviceDesc->method_count();
+
+    for (int i = 0; i < methodCnt; ++i)
+    {
+        // 获取服务对象指定方法的描述
+        const google::protobuf::MethodDescriptor * methodPtr = serviceDesc->method(i);
+        std::string method_name = methodPtr->name();
+        service_info.m_methodMap.emplace(method_name, methodPtr);
+    }
+    service_info.m_service = service;
+    m_serviceInfoMap.emplace(serviceName, service_info);
 }
 
 // 启动 muduo server
