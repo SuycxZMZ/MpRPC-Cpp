@@ -6,6 +6,7 @@
 #include <google/protobuf/descriptor.h>
 #include <string>
 #include "rpcheader.pb.h"
+#include "mprpccontroller.h"
 
 class MpRpcChannel : public google::protobuf::RpcChannel
 {

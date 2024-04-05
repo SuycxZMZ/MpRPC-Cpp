@@ -1,8 +1,6 @@
 #include <iostream>
 #include "friend.pb.h"
 #include "mprpcapplication.h"
-#include "mprpcchannel.h"
-
 
 int main(int argc, char ** argv)
 {
@@ -18,23 +16,32 @@ int main(int argc, char ** argv)
     request.set_id(999);
 
     // 通过代理调用方法 同步调用
-    stub.GetFriendList(nullptr, &request, &response, nullptr);
+    MprpcController controller;
+    stub.GetFriendList(&controller, &request, &response, nullptr);
     // stub.Login(nullptr, &request, &response, nullptr);
     
     // 调用完成
-    if (0 == response.result().errcode())
+    if (controller.Failed())
     {
-        std::cout << "rpc GetFriendList response : " << response.success() << std::endl;
-        uint32_t friend_size = response.friend__size();
-        for (int i = 0; i < friend_size; ++i)
-        {
-            std::cout << "friends : " << (i + 1) << response.friend_(i) << std::endl;; 
-        }
+        std::cout << controller.ErrorText() << std::endl;
     }
     else
     {
-        std::cout << "rpc GetFriendList response error : " << response.result().errmsg() << std::endl;
+        if (0 == response.result().errcode())
+        {
+            std::cout << "rpc GetFriendList response : " << response.success() << std::endl;
+            uint32_t friend_size = response.friend__size();
+            for (int i = 0; i < friend_size; ++i)
+            {
+                std::cout << "friends : " << (i + 1) << response.friend_(i) << std::endl;; 
+            }
+        }
+        else
+        {
+            std::cout << "rpc GetFriendList response error : " << response.result().errmsg() << std::endl;
+        }
     }
+
 
     return 0;
 }
