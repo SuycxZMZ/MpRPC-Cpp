@@ -18,9 +18,15 @@ int main(int argc, char ** argv)
     request.set_name("zhang san");
     request.set_pwd("123456");
 
+    fixbug::RegisterRequst reg_request;
+    fixbug::RegisterResponse reg_response;
+    reg_request.set_id(999);
+    reg_request.set_name("li si");
+    reg_request.set_pwd("666666");
+
     // 通过代理调用方法 同步调用
     stub.Login(nullptr, &request, &response, nullptr);
-
+    
     // 调用完成
     if (0 == response.result().errcode())
     {
@@ -29,6 +35,16 @@ int main(int argc, char ** argv)
     else
     {
         std::cout << "rpc login response error : " << response.result().errmsg() << std::endl;
+    }
+
+    stub.Register(nullptr, &reg_request, &reg_response, nullptr);
+    if (0 == reg_response.result().errcode())
+    {
+        std::cout << "rpc register response : " << reg_response.success() << std::endl;
+    }
+    else
+    {
+        std::cout << "rpc register response error : " << reg_response.result().errmsg() << std::endl;
     }
 
     return 0;

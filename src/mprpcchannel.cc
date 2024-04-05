@@ -105,10 +105,12 @@ void MpRpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     }
 
     // 反序列化 response
-    std::string response_str(recv_buf, 0, recv_size);
-    if (!response->ParseFromString(response_str))
+    // std::string response_str(recv_buf, 0, recv_size);
+    if (!response->ParseFromArray(recv_buf, recv_size))
+    // if (!response->ParseFromString(response_str))
     {
         std::cout << "parse response error !!! " << std::endl;
+        // std::cout << response_str << std::endl;
         close(clientfd);
         return;
     }
