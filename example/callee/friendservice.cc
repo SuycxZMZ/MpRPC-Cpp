@@ -39,6 +39,14 @@ public:
 int main(int argc, char ** argv)
 {
     LOG_INFO("Debug information");
+    LOG_INFO("Debug information");
+    LOG_INFO("Debug information");
+    LOG_INFO("Debug information");
+    LOG_INFO("Debug information");
+    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
+    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
+    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
+    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
     LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
 
     // 框架初始化

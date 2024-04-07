@@ -1,6 +1,8 @@
 #include "rpcprovider.h"
 #include "mprpcapplication.h"
 #include "rpcheader.pb.h"
+#include "logger.h"
+#include "zookeeperutil.h"
 
 void RpcProvider::NotifyService(google::protobuf::Service * service)
 {
@@ -39,6 +41,23 @@ void RpcProvider::Run()
 
     // 设置server线程数量
     server.setThreadNum(4);
+
+    // 注册到 zk 上 rpcclient可以从zkserver上发现服务
+    ZkClient zkcli;
+    zkcli.start();
+    // 设置service_name为永久节点 method_name为临时节点
+    for (auto & sp : m_serviceInfoMap)
+    {
+        std::string service_path = "/" + sp.first;
+        zkcli.create(service_path.c_str(), nullptr, 0);
+        for (auto & mp : sp.second.m_methodMap)
+        {
+            std::string method_path = service_path + "/" + mp.first;
+            char method_path_data[128] = {0};
+            sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            zkcli.create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
+        }
+    }
 
     // 启动server
     server.start();
@@ -100,6 +119,12 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
     std::cout << "args_size : " << args_size << std::endl;
     std::cout << "args_str : " << args_str << std::endl;
     std::cout << "=======================================" << std::endl;
+
+    LOG_INFO("header_size : %d", header_size);
+    LOG_INFO("service_name : %s", service_name.c_str());
+    LOG_INFO("method_name : %s", method_name.c_str());
+    LOG_ERROR("args_size : %d", args_size);
+    LOG_ERROR("args_str : %s", args_str.c_str());
 
     // 获取service对象和method对象
     auto it = m_serviceInfoMap.find(service_name);
