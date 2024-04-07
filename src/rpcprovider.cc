@@ -120,12 +120,6 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
     std::cout << "args_str : " << args_str << std::endl;
     std::cout << "=======================================" << std::endl;
 
-    LOG_INFO("header_size : %d", header_size);
-    LOG_INFO("service_name : %s", service_name.c_str());
-    LOG_INFO("method_name : %s", method_name.c_str());
-    LOG_ERROR("args_size : %d", args_size);
-    LOG_ERROR("args_str : %s", args_str.c_str());
-
     // 获取service对象和method对象
     auto it = m_serviceInfoMap.find(service_name);
     if (m_serviceInfoMap.end() == it)
