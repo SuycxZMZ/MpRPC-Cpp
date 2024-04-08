@@ -13,6 +13,7 @@ int main(int argc, char ** argv)
     // 业务
     fixbug::GetFriendListRequest request;
     fixbug::GetFriendListResponse response;
+    // 业务填写request
     request.set_id(999);
 
     // 通过代理调用方法 同步调用

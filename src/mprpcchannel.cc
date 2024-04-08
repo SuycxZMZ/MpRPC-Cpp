@@ -9,7 +9,6 @@
 #include <unistd.h>
 #include <error.h>
 
-
 void MpRpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                         google::protobuf::RpcController* controller, 
                         const google::protobuf::Message* request,

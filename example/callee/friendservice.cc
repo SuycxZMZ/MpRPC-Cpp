@@ -9,46 +9,39 @@
 class FriendService : public fixbug::FriendServiceRpc
 {
 public:
+    // 实际要执行的业务
     std::vector<std::string> GetFriendList(uint32_t id)
     {
         std::cout << "do local GetFriendList service" << std::endl;
         return {"zhang san", "li si", "zhao jian yong"};
     }
+    // 给框架调用的函数
     void GetFriendList(::google::protobuf::RpcController* controller,
                        const ::fixbug::GetFriendListRequest* request,
                        ::fixbug::GetFriendListResponse* response,
-                       ::google::protobuf::Closure* done)
+                       ::google::protobuf::Closure* done) override
     {
         uint32_t id = request->id();
+        // 调用本地实际业务
         std::vector<std::string> friend_list = GetFriendList(id);
 
+        // 写响应
         response->mutable_result()->set_errcode(0);
         response->mutable_result()->set_errmsg("");
         response->set_success(1);
-        
         for (auto & name : friend_list)
         {
             std::string * p = response->add_friend_();
             *p = name;
         }
 
+        // 回调 --> 将响应序列化并通过网络发送 --> 走muduo
         done->Run();
     }
 };
 
 int main(int argc, char ** argv)
 {
-    LOG_INFO("Debug information");
-    LOG_INFO("Debug information");
-    LOG_INFO("Debug information");
-    LOG_INFO("Debug information");
-    LOG_INFO("Debug information");
-    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
-    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
-    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
-    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
-    LOG_ERROR("%s:%s:%d", __FILE__, __FUNCTION__, __LINE__);
-
     // 框架初始化
     MprpcApplication::Init(argc, argv);
 

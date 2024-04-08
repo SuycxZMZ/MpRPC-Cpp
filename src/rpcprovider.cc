@@ -7,7 +7,7 @@
 void RpcProvider::NotifyService(google::protobuf::Service * service)
 {
     ServiceInfo service_info;
-
+    // 获取服务描述符
     const google::protobuf::ServiceDescriptor * serviceDesc = service->GetDescriptor();
     // 获取服务名字
     const std::string serviceName = serviceDesc->name();
@@ -42,7 +42,7 @@ void RpcProvider::Run()
     // 设置server线程数量
     server.setThreadNum(4);
 
-    // 注册到 zk 上 rpcclient可以从zkserver上发现服务
+    // 注册到 zk 上， rpcclient可以从zkserver上发现服务
     ZkClient zkcli;
     zkcli.start();
     // 设置service_name为永久节点 method_name为临时节点

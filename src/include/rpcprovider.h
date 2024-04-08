@@ -25,11 +25,11 @@ private:
     {
         // 服务对象
         google::protobuf::Service * m_service;
-        // 服务方法映射表
+        // 服务方法映射表 {method_name : method_Desc}
         std::unordered_map<std::string, const google::protobuf::MethodDescriptor *> m_methodMap;
     };
     
-    // 存储注册成功的服务对象和其服务方法的所有信息
+    // 存储注册成功的服务对象和其服务方法的所有信息 {service_name : service_info}
     std::unordered_map<std::string, ServiceInfo> m_serviceInfoMap;
 
     muduo::net::EventLoop m_eventLoop; 
