@@ -246,3 +246,237 @@ public:
     }
 };
 ```
+
+可以看到，Login的 RPC 重载函数有四个参数：controller（表示函数是否出错）、request（请求）、response（响应）、done（响应填写后的回调） 
+其主要做的也是去围绕着解析参数，将参数放入本地调用的方法，将结果返回并执行回调函数。至于这个回调函数则是在服务端执行读写事件回调函数绑定的。
+
+绑定的是如下方法：
+```C++
+
+// 在RpcProvider::OnMessage中调用
+void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, 
+                            muduo::net::Buffer * buffer, 
+                            muduo::Timestamp time)
+{
+    // 读取头部大小
+
+    // 读取头部原始字符流
+
+    // 反序列化
+
+    // 取出参数
+
+    // 获取service对象和method对象
+
+    // 生成rpc方法的请求request 和 response响应参数
+
+    // 绑定Closure回调
+    google::protobuf::Closure * done = 
+        google::protobuf::NewCallback<RpcProvider, 
+                                  const muduo::net::TcpConnectionPtr &, 
+                                  google::protobuf::Message *>
+                                  (this, &RpcProvider::SendRpcResponse, 
+                                   conn, response);
+
+    // 根据远端rpc请求，调用本地发布的方法
+    service->CallMethod(method, nullptr, request, response, done);
+}
+
+void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr & conn, google::protobuf::Message * response)
+{
+    // 把rpc响应序列化为字符流发送给远程调用方
+    std::string response_str;
+    if (response->SerializeToString(&response_str))
+    {
+        // 序列化成功之后把执行结果返回给调用方
+        conn->send(response_str);
+    }
+    else
+    {
+        std::cout << "response SerializeToString error !!! " << std::endl;
+    }
+    // 模拟http短链接，发送完服务器主动断开
+    conn->shutdown();
+}
+```
+
+### 桩类是干嘛的
+
+那么其实现在来说，我们并没有看到调用方是何时发送了要调用方法以及相应参数？
+
+我们还是需要去返回桩类，这个是由 protobuf 自动去帮你生成的。
+
+```C++
+class UserServiceRpc_Stub : public UserServiceRpc {
+ public:
+  UserServiceRpc_Stub(::PROTOBUF_NAMESPACE_ID::RpcChannel* channel);
+  UserServiceRpc_Stub(::PROTOBUF_NAMESPACE_ID::RpcChannel* channel,
+                   ::PROTOBUF_NAMESPACE_ID::Service::ChannelOwnership ownership);
+  ~UserServiceRpc_Stub();
+
+  inline ::PROTOBUF_NAMESPACE_ID::RpcChannel* channel() { return channel_; }
+
+  // implements UserServiceRpc ------------------------------------------
+
+  void Login(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
+                       const ::fixbug::LoginRequest* request,
+                       ::fixbug::LoginResponse* response,
+                       ::google::protobuf::Closure* done);
+  void Register(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
+                       const ::fixbug::RegisterRequst* request,
+                       ::fixbug::RegisterResponse* response,
+                       ::google::protobuf::Closure* done);
+ private:
+  ::PROTOBUF_NAMESPACE_ID::RpcChannel* channel_;
+  bool owns_channel_;
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(UserServiceRpc_Stub);
+};
+
+// 我们在定义桩类的时候，会传入一个RpcCannel的指针，这个绑定到这个桩类的channel_指针。 
+// 当我们去调用这个桩类的Login方法的时候，会去调用传递进来的channel的CallMethod方法：
+void UserServiceRpc_Stub::Login(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
+                              const ::fixbug::LoginRequest* request,
+                              ::fixbug::LoginResponse* response,
+                              ::google::protobuf::Closure* done) {
+  channel_->CallMethod(descriptor()->method(0),
+                       controller, request, response, done);
+}
+
+// 上面走的是RPCChannel的CallMethod
+class MpRpcChannel : public google::protobuf::RpcChannel
+{
+public:
+    // 所有使用 stub 代理类调用的rpc方法都走到这里，进行序列化和网络发送
+    void CallMethod(const google::protobuf::MethodDescriptor* method,
+                          google::protobuf::RpcController* controller, 
+                          const google::protobuf::Message* request,
+                          google::protobuf::Message* response, 
+                          google::protobuf::Closure* done) override;
+};
+
+// CallMethod 要干的事情 ： 
+// 组织要发送的 request_str 字符串
+// 从zookeeper中拿到服务端的 ip 和 port，连接服务端
+// 发送 request_str
+// 接受服务端返回过来的 response 字符串并反序列化出结果
+void MpRpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
+                        google::protobuf::RpcController* controller, 
+                        const google::protobuf::Message* request,
+                        google::protobuf::Message* response, 
+                        google::protobuf::Closure* done)
+{
+    const google::protobuf::ServiceDescriptor* service_desc = method->service();
+    std::string service_name = service_desc->name();
+    std::string method_name = method->name();
+
+    uint32_t args_size = 0;
+    std::string args_str;
+    if (!request->SerializeToString(&args_str))
+    {
+        controller->SetFailed("Serialize request args_str error !!!");
+        // std::cout << "Serialize request args_str error !!!" << std::endl;
+        return;
+    }
+    args_size = args_str.size();
+
+    // set rpcheader
+    mprpc::RpcHeader rpcheader;
+    rpcheader.set_service_name(service_name);
+    rpcheader.set_method_name(method_name);
+    rpcheader.set_args_size(args_size);
+
+    // 序列化 rpcheader
+    std::string rpcheader_str;
+    if (!rpcheader.SerializeToString(&rpcheader_str))
+    {
+        controller->SetFailed("Serialize request rpcheader error !!!");
+        // std::cout << "Serialize request rpcheader error !!!" << std::endl;
+        return;
+    }
+    uint32_t rpcheader_size = rpcheader_str.size();
+
+    // 组装 rpc 请求帧
+    std::string rpc_send_str;
+    // rpcheader_size
+    rpc_send_str.insert(0, std::string((char*)&rpcheader_size, 4));
+    // rpcheader
+    rpc_send_str += rpcheader_str;
+    // args
+    rpc_send_str += args_str;
+
+    // 已经打包好序列化字符流 开始通过网络发送
+    int clientfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (-1 == clientfd) 
+    {
+        controller->SetFailed("error create socket : " + std::to_string(errno));
+        return;
+    }
+
+    // 现在从zkserver上读取rpc方法对应的主机
+    ZkClient zkcli;
+    zkcli.start();
+    std::string method_path = "/" + service_name + "/" + method_name;
+    std::string host_data = zkcli.GetData(method_path.c_str());
+    if ("" == host_data)
+    {
+        controller->SetFailed(method_path + " is not exist");
+        return;
+    }
+    int idx = host_data.find(":");
+    if (-1 == idx)
+    {
+        controller->SetFailed(method_path + " address is invalid");
+        return;
+    }
+    std::string ip = host_data.substr(0, idx);
+    uint16_t port = atoi(host_data.substr(idx+1, host_data.size() - idx - 1).c_str());
+
+    LOG_INFO("%s:%s:remote: %s, %d", service_name.c_str(), method_name.c_str(), ip.c_str(), port);
+
+    struct sockaddr_in server_addr;
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(port);
+    server_addr.sin_addr.s_addr = inet_addr(ip.c_str());
+
+    // 连接
+    if (-1 == connect(clientfd, (sockaddr*)&server_addr, sizeof(server_addr)))
+    {
+        controller->SetFailed("connect error : " + std::to_string(errno));
+        // std::cout << "connect error : " << errno << std::endl;
+        close(clientfd);
+        // exit(EXIT_FAILURE);
+        return;
+    }
+
+    // 发送
+    if (-1 == send(clientfd, rpc_send_str.c_str(), rpc_send_str.size(), 0))
+    {
+        controller->SetFailed("send error : " + std::to_string(errno));
+        close(clientfd);
+        return;       
+    }
+
+    // 接收响应
+    char recv_buf[1024] = {0};
+    uint32_t recv_size = 0;
+    if (-1 == (recv_size = recv(clientfd, recv_buf, 1024, 0)))
+    {
+        controller->SetFailed("recv error : " + std::to_string(errno));
+        close(clientfd);
+        return;
+    }
+
+    // 反序列化 response
+    if (!response->ParseFromArray(recv_buf, recv_size))
+    {
+        controller->SetFailed("parse response error !!!");
+        close(clientfd);
+        return;
+    }
+
+    close(clientfd);
+}
+```
+
+## 总流程
+![alt text](image/RPC3.png)
