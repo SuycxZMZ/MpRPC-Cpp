@@ -20,6 +20,7 @@ include_directories(${PROJECT_SOURCE_DIR}/example)
 # -I/usr/local/include/google/protobuf  -L/usr/local/lib
 include_directories(/usr/local/include/google/protobuf)
 include_directories(/usr/local/include/zookeeper)
+include_directories(/usr/local/include/muduo) 
 
 # 设置项目库文件搜索路径 -L  protobuf zookeeper的连接库/usr/local/lib
 link_directories(${PROJECT_SOURCE_DIR}/lib)
