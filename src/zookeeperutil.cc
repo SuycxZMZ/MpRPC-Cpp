@@ -2,7 +2,28 @@
 #include "mprpcapplication.h"
 #include "logger.h"
 
-// 全局 watcher 观察器   server给client的通知
+/**
+ * @SuycxZMZ
+ * @brief 类型为 watcher_fn 全局观察器，用于处理 ZooKeeper 客户端的会话事件。
+ * 在连接建立后，通过信号量 sem_post() 通知 start() 函数，连接已建立。
+ * @param zh ZooKeeper 客户端的句柄，即 zhandle_t 类型的指针，表示与 ZooKeeper 服务器的连接。
+ * @param type 事件类型，可以是以下值之一：
+ *          ZOO_SESSION_EVENT：会话事件，表示与 ZooKeeper 服务器的连接状态发生变化。
+ *          ZOO_CREATED_EVENT：节点创建事件。
+ *          ZOO_DELETED_EVENT：节点删除事件。
+ *          ZOO_CHANGED_EVENT：节点数据变化事件。
+ *          ZOO_CHILD_EVENT：子节点变化事件。
+ *          ZOO_SESSION_EVENT：会话事件。
+ * @param state 事件状态，可以是以下值之一：
+ *          ZOO_EXPIRED_SESSION_STATE：会话过期状态。
+ *          ZOO_AUTH_FAILED_STATE：认证失败状态。
+ *          ZOO_CONNECTING_STATE：连接中状态。
+ *          ZOO_ASSOCIATING_STATE：关联中状态。
+ *          ZOO_CONNECTED_STATE：已连接状态。
+ *          ZOO_CONNECTEDREADONLY_STATE：只读已连接状态。
+ * @param path 事件路径，表示发生事件的节点路径。
+ * @param watcherCtx 观察者上下文，用于传递额外的信息。
+*/
 void global_watcher(zhandle_t * zh, int type, 
                     int state, const char * path, void * watcherCtx)
 {

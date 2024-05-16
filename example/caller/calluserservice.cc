@@ -3,7 +3,6 @@
 #include "mprpcapplication.h"
 #include "mprpcchannel.h"
 
-
 int main(int argc, char ** argv)
 {
     // 初始化
@@ -24,7 +23,8 @@ int main(int argc, char ** argv)
     reg_request.set_name("li si");
     reg_request.set_pwd("666666");
 
-    // 通过代理调用方法 同步调用
+    // 通过代理调用方法 同步调用 --> MpRpcChannel::CallMethod
+    // MpRpcChannel 继承 google::protobuf::RpcChannel 并重写 CallMethod
     stub.Login(nullptr, &request, &response, nullptr);
     
     // 调用完成

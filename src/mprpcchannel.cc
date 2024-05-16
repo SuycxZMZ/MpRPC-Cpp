@@ -15,10 +15,12 @@ void MpRpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                         google::protobuf::Message* response, 
                         google::protobuf::Closure* done)
 {
+    // 获取服务名和方法名
     const google::protobuf::ServiceDescriptor* service_desc = method->service();
     std::string service_name = service_desc->name();
     std::string method_name = method->name();
 
+    // 序列化 request 请求参数
     uint32_t args_size = 0;
     std::string args_str;
     if (!request->SerializeToString(&args_str))
