@@ -13,7 +13,6 @@ RPC的全称是远程过程调用（Remote Procedure Call）
 
 而我们要做的RPC框架就是为使这个过程更好用而设计的。
 
-
 ## 设计
 
 ![alt text](image/RPC1.png)

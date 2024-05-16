@@ -1,6 +1,8 @@
 #!/bin/bash
 set -x
 
+./setNewProto.sh
+
 # 检查是否存在 build 和 bin 文件夹，如果不存在则创建
 mkdir -p build bin
 

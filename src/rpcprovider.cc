@@ -11,6 +11,7 @@ void RpcProvider::NotifyService(google::protobuf::Service * service)
     const google::protobuf::ServiceDescriptor * serviceDesc = service->GetDescriptor();
     // 获取服务名字
     const std::string serviceName = serviceDesc->name();
+
     // 获取服务方法的数量
     int methodCnt = serviceDesc->method_count();
 
@@ -25,7 +26,6 @@ void RpcProvider::NotifyService(google::protobuf::Service * service)
     m_serviceInfoMap.emplace(serviceName, service_info);
 }
 
-// 启动 muduo server
 void RpcProvider::Run()
 {
     std::string ip = MprpcApplication::GetInstance().GetConfig().Load("rpcserverip");
@@ -72,12 +72,6 @@ void RpcProvider::OnConnection(const muduo::net::TcpConnectionPtr &conn)
     }
 }
 
-// 处理远程调用请求
-/*
-service_name method_name args 
-单个请求帧格式 header_size + header(service_name method_name) + args_size + args
-args_size 可以防止tcp粘包。
-*/
 void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, 
                             muduo::net::Buffer * buffer, 
                             muduo::Timestamp time)
@@ -155,7 +149,9 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
                                   (this, &RpcProvider::SendRpcResponse, 
                                    conn, response);
 
-    // 根据远端rpc请求，调用本地发布的方法
+    // 根据远端rpc请求，调用本地发布的方法，这里走的是 protobuf 生成的 rpcservice 中的 CallMethod 
+    // CallMethod 调用具体的 rpcservice 方法，
+    // 具体的 rpcservice 方法 用户的服务发布代码中被重写
     service->CallMethod(method, nullptr, request, response, done);
 }
 
