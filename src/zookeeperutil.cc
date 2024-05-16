@@ -35,14 +35,14 @@ void ZkClient::start()
     std::string zookeeperport= MprpcApplication::GetInstance().GetConfig().Load("zookeeperport");
     std::string conn_str = zookeeperip + ":" + zookeeperport;
 
-    /*
-    异步 
-    多线程版的API: 
-    API调用线程
-    网络IO线程
-    global_watcher 回调线程
-    zookeeper_init 直接返回不阻塞，先设置句柄
-    */  
+    /**
+     * 异步 
+     * 多线程版的API: 
+     * API调用线程
+     * 网络IO线程
+     * global_watcher 回调线程
+     * zookeeper_init 直接返回不阻塞，先设置句柄
+    */
     m_zhandle = zookeeper_init(conn_str.c_str(), global_watcher, 30000, nullptr, nullptr, 0);
     if (nullptr == m_zhandle)
     {

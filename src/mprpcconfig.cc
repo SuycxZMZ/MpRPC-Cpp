@@ -39,6 +39,8 @@ void MprpcConfig::LoadConfigFile(const char * config_file)
         m_configMap.emplace(key, value);
     }
 }
+
+// 获取配置项 
 std::string MprpcConfig::Load(const std::string & key)
 {
     auto it = m_configMap.find(key);

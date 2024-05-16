@@ -951,7 +951,7 @@ class UserServiceRpc : public ::PROTOBUF_NAMESPACE_ID::Service {
                   ::PROTOBUF_NAMESPACE_ID::RpcController* controller,
                   const ::PROTOBUF_NAMESPACE_ID::Message* request,
                   ::PROTOBUF_NAMESPACE_ID::Message* response,
-                  ::google::protobuf::Closure* done);
+                  ::google::protobuf::Closure* done); 
   const ::PROTOBUF_NAMESPACE_ID::Message& GetRequestPrototype(
     const ::PROTOBUF_NAMESPACE_ID::MethodDescriptor* method) const;
   const ::PROTOBUF_NAMESPACE_ID::Message& GetResponsePrototype(
