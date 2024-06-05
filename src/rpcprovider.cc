@@ -1,7 +1,6 @@
 #include "rpcprovider.h"
 #include "mprpcapplication.h"
 #include "rpcheader.pb.h"
-#include "logger.h"
 #include "zookeeperutil.h"
 
 void RpcProvider::NotifyService(google::protobuf::Service * service)
@@ -30,14 +29,14 @@ void RpcProvider::Run()
 {
     std::string ip = MprpcApplication::GetInstance().GetConfig().Load("rpcserverip");
     uint16_t port = atoi(MprpcApplication::GetInstance().GetConfig().Load("rpcserverport").c_str());
-    muduo::net::InetAddress address(ip, port);
+    tinymuduo::InetAddress address(port, ip);
 
     // 创建 TcpServer
-    muduo::net::TcpServer server(&m_eventLoop, address, "RpcServer");
+    tinymuduo::TcpServer server(&m_eventLoop, address, "RpcServer");
 
     // 绑定事件回调
-    server.setConnectionCallback(std::bind(&RpcProvider::OnConnection, this, std::placeholders::_1));
-    server.setMessageCallback(std::bind(&RpcProvider::OnMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+    server.setConnCallBack(std::bind(&RpcProvider::OnConnection, this, std::placeholders::_1));
+    server.setMsgCallBack(std::bind(&RpcProvider::OnMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     // 设置server线程数量
     server.setThreadNum(4);
@@ -64,7 +63,7 @@ void RpcProvider::Run()
     m_eventLoop.loop();
 }
 
-void RpcProvider::OnConnection(const muduo::net::TcpConnectionPtr &conn)
+void RpcProvider::OnConnection(const tinymuduo::TcpConnectionPtr &conn)
 {
     if (!conn->connected())
     {
@@ -72,11 +71,11 @@ void RpcProvider::OnConnection(const muduo::net::TcpConnectionPtr &conn)
     }
 }
 
-void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, 
-                            muduo::net::Buffer * buffer, 
-                            muduo::Timestamp time)
+void RpcProvider::OnMessage(const tinymuduo::TcpConnectionPtr &conn, 
+                            tinymuduo::Buffer * buffer, 
+                            tinymuduo::Timestamp time)
 {
-    std::string recv_buf = buffer->retrieveAllAsString();
+    std::string recv_buf = buffer->retriveAllAsString();
 
     // 读取头部大小
     uint32_t header_size = 0;
@@ -144,7 +143,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
     // 绑定Closure回调
     google::protobuf::Closure * done = 
         google::protobuf::NewCallback<RpcProvider, 
-                                  const muduo::net::TcpConnectionPtr &, 
+                                  const tinymuduo::TcpConnectionPtr &, 
                                   google::protobuf::Message *>
                                   (this, &RpcProvider::SendRpcResponse, 
                                    conn, response);
@@ -155,7 +154,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
     service->CallMethod(method, nullptr, request, response, done);
 }
 
-void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr & conn, google::protobuf::Message * response)
+void RpcProvider::SendRpcResponse(const tinymuduo::TcpConnectionPtr & conn, google::protobuf::Message * response)
 {
     // 把rpc响应序列化为字符流发送给远程调用方
     std::string response_str;

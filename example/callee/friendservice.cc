@@ -4,7 +4,6 @@
 #include "friend.pb.h"
 #include "mprpcapplication.h"
 #include "rpcprovider.h"
-#include "logger.h"
 
 class FriendService : public fixbug::FriendServiceRpc
 {

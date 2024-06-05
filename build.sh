@@ -13,4 +13,4 @@ rm -rf build/* bin/*
 # 进入 build 文件夹并执行 cmake 和 make
 cd build &&
 cmake .. &&
-make
+make -j4

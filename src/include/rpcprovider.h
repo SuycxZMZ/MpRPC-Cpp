@@ -6,10 +6,7 @@
 #include <functional>
 #include <unordered_map>
 #include <google/protobuf/descriptor.h>
-#include <muduo/net/TcpServer.h>
-#include <muduo/net/EventLoop.h>
-#include <muduo/net/InetAddress.h>
-#include <muduo/net/TcpConnection.h>
+#include <tinymuduo/tinymuduo.h>
 
 /**
  * @SuycxZMZ
@@ -44,20 +41,20 @@ private:
     ///@brief 存储注册成功的服务对象和其服务方法的所有信息 {service_name : service_info}
     std::unordered_map<std::string, ServiceInfo> m_serviceInfoMap;
 
-    muduo::net::EventLoop m_eventLoop; 
+    tinymuduo::EventLoop m_eventLoop; 
 
     ///@brief 连接事件回调，只做断开回调
-    void OnConnection(const muduo::net::TcpConnectionPtr&);
+    void OnConnection(const tinymuduo::TcpConnectionPtr&);
 
     ///@brief 消息回调 1.解析请求 2.获取service对象和method对象，并初始化request和response对象 3.绑定Closure回调，service->CallMethod(...)
     ///@details 请求格式：service_name method_name args  --> recv_buf = header_size + header + args
     ///         单个请求帧格式 header_size + header(service_name method_name + args_size) + args
     ///         解析请求帧：1. 获取请求帧长度 2. 解析header 3. 解析args
     ///         args_size 可以防止tcp粘包。
-    void OnMessage(const muduo::net::TcpConnectionPtr&, muduo::net::Buffer*, muduo::Timestamp);
+    void OnMessage(const tinymuduo::TcpConnectionPtr&, tinymuduo::Buffer*, tinymuduo::Timestamp);
 
     // Closure回调
-    void SendRpcResponse(const muduo::net::TcpConnectionPtr&, google::protobuf::Message *);
+    void SendRpcResponse(const tinymuduo::TcpConnectionPtr&, google::protobuf::Message *);
 };
 
 

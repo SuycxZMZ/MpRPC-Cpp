@@ -1,6 +1,5 @@
 #include "zookeeperutil.h"
 #include "mprpcapplication.h"
-#include "logger.h"
 
 /**
  * @SuycxZMZ
@@ -67,7 +66,7 @@ void ZkClient::start()
     m_zhandle = zookeeper_init(conn_str.c_str(), global_watcher, 30000, nullptr, nullptr, 0);
     if (nullptr == m_zhandle)
     {
-        LOG_ERROR("in ZkClient::start() : zookeeper_init error");
+        // LOG_ERROR("in ZkClient::start() : zookeeper_init error");
         exit(EXIT_FAILURE);
     }
 
@@ -78,7 +77,7 @@ void ZkClient::start()
     zoo_set_context(m_zhandle, &sem);
 
     sem_wait(&sem);
-    LOG_INFO("ZkClient init success");
+    // LOG_INFO("ZkClient init success");
 }
 
 void ZkClient::create(const char * path, const char * data, int datalen, int state)
@@ -94,11 +93,11 @@ void ZkClient::create(const char * path, const char * data, int datalen, int sta
                           state, path_buffer, buff_len);
         if (ZOK == flag)
         {
-            LOG_INFO("znode create success. path : %s", path);
+            // LOG_INFO("znode create success. path : %s", path);
         }
         else
         {
-            LOG_ERROR("znode create error. path : %s, flag : %d", path, flag);
+            // LOG_ERROR("znode create error. path : %s, flag : %d", path, flag);
             exit(EXIT_FAILURE);
         }
     }
@@ -112,7 +111,7 @@ std::string ZkClient::GetData(const char * path)
 
     if (ZOK != flag)
     {
-        LOG_ERROR("get znode error path : %s", path);
+        // LOG_ERROR("get znode error path : %s", path);
         return "";
     }
     else

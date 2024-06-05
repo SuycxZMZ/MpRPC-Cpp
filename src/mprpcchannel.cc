@@ -1,7 +1,6 @@
 #include "mprpcchannel.h"
 #include "mprpcapplication.h"
 #include "zookeeperutil.h"
-#include "logger.h"
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -102,7 +101,7 @@ void MpRpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     std::string ip = host_data.substr(0, idx);
     uint16_t port = atoi(host_data.substr(idx+1, host_data.size() - idx - 1).c_str());
 
-    LOG_INFO("%s:%s:remote: %s, %d", service_name.c_str(), method_name.c_str(), ip.c_str(), port);
+    // LOG_INFO("%s:%s:remote: %s, %d", service_name.c_str(), method_name.c_str(), ip.c_str(), port);
 
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
