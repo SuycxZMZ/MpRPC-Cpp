@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 project(mprpc)
 
 # 设置要求的 C++ 标准
@@ -20,7 +20,7 @@ include_directories(${PROJECT_SOURCE_DIR}/example)
 # -I/usr/local/include/google/protobuf  -L/usr/local/lib
 include_directories(/usr/local/include/google/protobuf)
 include_directories(/usr/local/include/zookeeper)
-include_directories(/usr/include/) 
+include_directories(/usr/local/include/) 
 
 # 设置项目库文件搜索路径 -L  protobuf zookeeper的连接库/usr/local/lib
 link_directories(${PROJECT_SOURCE_DIR}/lib)
