@@ -15,7 +15,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # 头文件搜索路径 -I
 # include_directories(${PROJECT_SOURCE_DIR}/src)
-include_directories(${PROJECT_SOURCE_DIR}/src/include)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/example)
 # -I/usr/local/include/google/protobuf  -L/usr/local/lib
 include_directories(/usr/local/include/google/protobuf)
@@ -27,6 +27,11 @@ link_directories(${PROJECT_SOURCE_DIR}/lib)
 link_directories(/usr/local/lib)
 link_directories(/usr/lib)
 
-# 加载子目录
-add_subdirectory(src)
+# 列出所有需要编译的源文件
+file(GLOB SRC_LIST
+    src/*.cc
+)
+add_library(mprpc SHARED ${SRC_LIST})
+target_link_libraries(mprpc tinymuduo pthread zookeeper_mt)
+
 add_subdirectory(example)
