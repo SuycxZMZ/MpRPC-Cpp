@@ -1,6 +1,13 @@
 ## 1. zookeeper 
+
 ```shell
 # 解压
+tar -zxvf source.tar.gz
+# 如果没有安装java环境
+sudo apt-get install -y openjdk-8-jdk
+sudo vim .bashrc
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+source .bashrc
 
 # 配置 修改
 cd /conf
@@ -17,12 +24,6 @@ dataDir=/data/zookeeper
 
 # 如果没有开启查看 本机是否安装java环境
 java
-
-# 如果没有安装java环境
-sudo apt-get install -y openjdk-8-jdk
-sudo vim .bashrc
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-source .bashrc
 
 # 关闭
 ./zkServer.sh stop
@@ -44,3 +45,17 @@ sudo make install
 
 ```
 
+## 2. protobuf
+
+```shell
+# protobuf安装 本项目的根目录下的tools-packages里放的有3.12.4源码包，最好放到一个之后可以随时查看的地方
+sudo unzip protobuf-3.12.4.zip
+cd protobuf-3.12.4
+./autogen.sh
+./configure
+make -j4
+sudo make install
+sudo ldconfig
+# 检查安装是否成功
+protoc --version
+```
