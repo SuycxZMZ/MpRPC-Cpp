@@ -168,5 +168,5 @@ void RpcProvider::SendRpcResponse(const tinymuduo::TcpConnectionPtr & conn, goog
         std::cout << "response SerializeToString error !!! " << std::endl;
     }
     // 模拟http短链接，发送完服务器主动断开
-    conn->shutdown();
+    // conn->shutdown();
 }
