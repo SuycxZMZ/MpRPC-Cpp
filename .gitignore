@@ -1,3 +1,5 @@
 build/*
 bin/*
 lib/*
+tools-package/protobuf-3.12.4.zip
+tools-package/zookeeper-3.14.10.tar.gz
