@@ -3,8 +3,10 @@
 
 /**
  * @SuycxZMZ
- * @brief 类型为 watcher_fn 全局观察器，用于处理 ZooKeeper 客户端的会话事件。
- * 在连接建立后，通过信号量 sem_post() 通知 start() 函数，连接已建立。
+ * @brief 类型为 watcher_fn 全局观察器
+ * @details zookeeper 服务器端状态改变回调，这里rpcprovider也是zookeeper客户端，需要使用watcher回调
+ *          这里仅用了与服务端会话完成连接的回调，完成连接时唤醒 ZkClient::start() 线程返回
+ *          经常说的服务发现与治理，主要就是处理一系列zkserver上发生的事情，zkclient负责对不同的事件进行处理，修改自身存储的信息
  * @param zh ZooKeeper 客户端的句柄，即 zhandle_t 类型的指针，表示与 ZooKeeper 服务器的连接。
  * @param type 事件类型，可以是以下值之一：
  *          ZOO_SESSION_EVENT：会话事件，表示与 ZooKeeper 服务器的连接状态发生变化。
@@ -12,7 +14,6 @@
  *          ZOO_DELETED_EVENT：节点删除事件。
  *          ZOO_CHANGED_EVENT：节点数据变化事件。
  *          ZOO_CHILD_EVENT：子节点变化事件。
- *          ZOO_SESSION_EVENT：会话事件。
  * @param state 事件状态，可以是以下值之一：
  *          ZOO_EXPIRED_SESSION_STATE：会话过期状态。
  *          ZOO_AUTH_FAILED_STATE：认证失败状态。
@@ -56,17 +57,16 @@ void ZkClient::start()
     std::string conn_str = zookeeperip + ":" + zookeeperport;
 
     /**
-     * 异步 
+     * 非阻塞直接返回
      * 多线程版的API: 
      * API调用线程
-     * 网络IO线程
+     * 网络线程
      * global_watcher 回调线程
      * zookeeper_init 直接返回不阻塞，先设置句柄
     */
     m_zhandle = zookeeper_init(conn_str.c_str(), global_watcher, 30000, nullptr, nullptr, 0);
     if (nullptr == m_zhandle)
     {
-        // LOG_ERROR("in ZkClient::start() : zookeeper_init error");
         exit(EXIT_FAILURE);
     }
 
@@ -77,7 +77,6 @@ void ZkClient::start()
     zoo_set_context(m_zhandle, &sem);
 
     sem_wait(&sem);
-    // LOG_INFO("ZkClient init success");
 }
 
 void ZkClient::create(const char * path, const char * data, int datalen, int state)
@@ -93,11 +92,9 @@ void ZkClient::create(const char * path, const char * data, int datalen, int sta
                           state, path_buffer, buff_len);
         if (ZOK == flag)
         {
-            // LOG_INFO("znode create success. path : %s", path);
         }
         else
         {
-            // LOG_ERROR("znode create error. path : %s, flag : %d", path, flag);
             exit(EXIT_FAILURE);
         }
     }
@@ -111,7 +108,6 @@ std::string ZkClient::GetData(const char * path)
 
     if (ZOK != flag)
     {
-        // LOG_ERROR("get znode error path : %s", path);
         return "";
     }
     else
