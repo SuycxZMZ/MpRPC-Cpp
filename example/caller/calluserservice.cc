@@ -27,15 +27,21 @@ int main(int argc, char ** argv)
     // MpRpcChannel 继承 google::protobuf::RpcChannel 并重写 CallMethod
     stub.Login(nullptr, &request, &response, nullptr);
     
-    // 调用完成
-    if (0 == response.result().errcode())
-    {
-        std::cout << "rpc login response : " << response.success() << std::endl;
+
+    for (int i = 0; i < 1000; ++i) {
+        stub.Login(nullptr, &request, &response, nullptr);
+        // 调用完成
+        if (0 == response.result().errcode())
+        {
+            std::cout << "rpc login response : " << response.success() << std::endl;
+        }
+        else
+        {
+            std::cout << "rpc login response error : " << response.result().errmsg() << std::endl;
+        }
+
     }
-    else
-    {
-        std::cout << "rpc login response error : " << response.result().errmsg() << std::endl;
-    }
+
 
     stub.Register(nullptr, &reg_request, &reg_response, nullptr);
     if (0 == reg_response.result().errcode())

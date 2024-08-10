@@ -31,7 +31,9 @@ java
 ```
 
 ### 安装c接口
+
 在工程文件夹下
+
 ```shell
 cd src/c
 sudo ./configure
@@ -49,6 +51,7 @@ sudo make install
 
 ```shell
 # protobuf安装 本项目的根目录下的tools-packages里放的有3.12.4源码包，最好放到一个之后可以随时查看的地方
+sudo apt install autoconf automake libtool curl make g++ unzip # 安装所需工具
 sudo unzip protobuf-3.12.4.zip
 cd protobuf-3.12.4
 ./autogen.sh
